@@ -1,0 +1,66 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  transition: background-color 0.5s ease, color 0.5s ease; /* Smooth transition */
+}
+
+/* Global dark mode background */
+body.dark {
+  background: #1a1a2e;
+  color: #fff;
+}
+
+/* Custom component styles for dark mode */
+.bg-gray-100 {
+  background-color: #f7fafc;
+}
+.dark\:bg-gray-900 {
+  background-color: #1a202c; /* Dark background */
+}
+
+/* Tailwind Text Colors */
+.text-gray-900 {
+  color: #1a202c;
+}
+.dark\:text-white {
+  color: #ffffff;
+}
+
+/* Header, Button, and other Components */
+.bg-blue-500 {
+  background-color: #4299e1;
+}
+.dark\:bg-blue-600 {
+  background-color: #2b6cb0;
+}
+
+/* Custom class for smooth transitions */
+transition {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+/* Projects Section */
+#projects {
+  position: relative;
+  overflow: hidden; /* Ensure no overflow from spheres */
+}
+
+/* Glow Animation for the Central Text */
+@keyframes glowEffect {
+  0% {
+    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);
+  }
+  50% {
+    text-shadow: 0px 0px 20px rgba(255, 255, 255, 1);
+  }
+  100% {
+    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);
+  }
+}
+
+
+button,
+a {
+  transition: all 0.3s ease-in-out;
+}
