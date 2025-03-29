@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Sphere, MeshDistortMaterial, Stars } from "@react-three/drei";
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 
 // Glowing Sphere Component
 const GlowingSphere = ({ position, color, onClick }) => {

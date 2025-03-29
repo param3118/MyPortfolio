@@ -4,7 +4,7 @@ import EarthCanvas from "./EarthCanvas";
 import Modal from "./Modal";
 import emailjs from "emailjs-com";
 
-const Contact = (isDarkMode ) => {
+const Contact = () => {
   const formRef = useRef();
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [loading, setLoading] = useState(false);
@@ -62,17 +62,14 @@ const Contact = (isDarkMode ) => {
   };
 
   return (
-    <section
-  id="contact"
-  className="w-full min-h-screen flex flex-col md:flex-row items-center justify-center p-6 
-    bg-gradient-to-r from-gray-100 via-gray-100 to-gray-100 
-    dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 overflow-auto"
->
-  <div
-    className="flex flex-col md:flex-row items-center justify-center w-full h-full"
-  >
+    <section id="contact"
+    className="w-full min-h-[72vh] p-6 flex flex-col items-center justify-start bg-gradient-to-r from-blue-100 via-blue-100 to-gray-100 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 overflow-auto">
+      <div
+        className="flex flex-col md:flex-row items-center justify-center overflow-auto"
+
+      >
         {/* EarthCanvas Section */}
-        <motion.div
+        {/* <motion.div
           initial={{ x: -50, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 1 }}
@@ -80,7 +77,7 @@ const Contact = (isDarkMode ) => {
           style={{ maxWidth: "500px", height: "100%" }}
         >
           <EarthCanvas />
-        </motion.div>
+        </motion.div> */}
 
         {/* Contact Form Section */}
         <motion.div
@@ -89,7 +86,7 @@ const Contact = (isDarkMode ) => {
           transition={{ duration: 1 }}
           className="flex-1 bg-gray-200 dark:bg-gray-700 p-4 rounded-lg shadow-md w-full max-w-md"
         >
-          <h3 className="text-xl font-semibold text-center mb-4 text-gray-700 dark:text-gray-200">
+          <h3 className="text-xl font-bold text-center mb-4 text-gray-700 dark:text-gray-200">
             Contact Me
           </h3>
           <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
@@ -137,14 +134,14 @@ const Contact = (isDarkMode ) => {
         </motion.div>
 
         {/* Modal Section */}
-        {isModalVisible && (
+        {/* {isModalVisible && (
           <Modal
             title={modalContent.title}
             message={modalContent.message}
             buttonText={modalContent.buttonText}
             setIsModalVisible={() => setIsModalVisible(false)}
           />
-        )}
+        )} */}
       </div>
     </section>
   );

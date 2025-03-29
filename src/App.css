@@ -45,7 +45,19 @@ transition {
   position: relative;
   overflow: hidden; /* Ensure no overflow from spheres */
 }
+#projects h3 {
+  margin-top: 0; /* Remove unnecessary top margin */
+  margin-bottom: 1 rem; /* Adjust spacing below the heading */
+}
+#projects > div:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
 
+#projects .relative {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
 /* Glow Animation for the Central Text */
 @keyframes glowEffect {
   0% {

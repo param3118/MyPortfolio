@@ -25,7 +25,7 @@ const Skills = (isDarkMode ) => {
   return (
     <section
       id="skills"
-      className="py-12 bg-gradient-to-r from-gray-100 via-black-100 to-black-100 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 text-center"
+      className="py-6  bg-gradient-to-r from-gray-100 via-black-100 to-black-100 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 text-center"
     >
       <h3 className="text-4xl font-bold mb-8 text-blue-600 dark:text-blue-400">
         My Skills

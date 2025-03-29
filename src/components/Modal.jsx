@@ -17,7 +17,6 @@ const Modal = ({ title, message, buttonText, isError, setIsModalVisible }) => {
             : "bg-green-200 border-green-500"
         }`}
       >
-        
         <div className="text-center">
           <h2
             className={`text-2xl font-semibold ${

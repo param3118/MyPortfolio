@@ -32,12 +32,14 @@ const Header = ({ toggleDarkMode, isDarkMode, toggleManageProjects }) => {
         >
           Dark Mode
         </button>
-        <button
+        {/* <button
           onClick={toggleManageProjects} // Toggle manage projects visibility
           className="bg-green-600 text-white px-3 py-1 rounded-md font-semibold hover:opacity-80 transition-all ml-4"
         >
-          {isDarkMode ? "Close Manage" : "Manage Projects"}
-        </button>
+          Manage Projects */}
+        
+          {/* {isDarkMode ? "Close Manage" : "Manage Projects"} */}
+        {/* </button> */}
       </div>
       {isMenuOpen && (
         <div className="md:hidden bg-indigo-600 text-white px-6 py-4 space-y-2">
