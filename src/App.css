@@ -1,9 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  transition: background-color 0.5s ease, color 0.5s ease; /* Smooth transition */
+  font-family: 'Inter', sans-serif;
+  /* Add other base body styles */
+  @apply bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 transition-colors duration-300;
 }
 
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar (optional, Webkit browsers) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: theme('colors.slate.300');
+  border-radius: 20px;
+  border: 3px solid transparent; /* Creates padding around thumb */
+}
+.dark ::-webkit-scrollbar-thumb {
+   background-color: theme('colors.slate.600');
+}
 /* Global dark mode background */
 body.dark {
   background: #1a1a2e;

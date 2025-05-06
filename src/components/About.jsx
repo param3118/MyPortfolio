@@ -1,89 +1,127 @@
+// src/components/About.jsx
 import React from "react";
-import { FaLightbulb, FaCode, FaCogs } from "react-icons/fa";
+import { motion } from "framer-motion";
+import profilePhoto from '../assets/my_iitkgp_photo.jpg';
+// --- Image Paths (Ensure these are correct) ---
+// Banner Image: Replace 'banner-default.jpg' with your actual banner image file name in the /public folder
+const bannerPhotoPath = "https://static.wixstatic.com/media/9553c3_1c205f777e714f3184488615390a28ab~mv2_d_2048_1247_s_2.jpg/v1/fill/w_560,h_270,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/9553c3_1c205f777e714f3184488615390a28ab~mv2_d_2048_1247_s_2.jpg";
+// Profile Image: Based on your previous input
+// const profilePhotoPath = "../assets/parampic1.jpeg"
+// ------------------------------------------------
 
-const highlights = [
-  {
-    icon: <FaLightbulb />,
-    title: "Machine Learning",
-    description:
-      "Building predictive models, neural networks, and optimizing systems for smarter solutions.",
-    bg: "bg-indigo-500 dark:bg-indigo-700",
-  },
-  {
-    icon: <FaCode />,
-    title: "Data Science",
-    description:
-      "Harnessing data insights through visualization and analytics to drive impactful decisions.",
-    bg: "bg-green-500 dark:bg-green-700",
-  },
-  {
-    icon: <FaCogs />,
-    title: "Creative Development",
-    description:
-      "Delivering cutting-edge projects that merge creativity with functionality to solve real-world problems.",
-    bg: "bg-pink-500 dark:bg-pink-700",
-  },
-];
+const About = ({ isDarkMode }) => {
+  // --- Consistent Styles ---
+  // Using simple backgrounds as the banner provides the main visual for the top
+  const lightBg = "bg-slate-100"; // Background for the content area below banner
+  const darkBg = "bg-slate-900";  // Background for the content area below banner
 
-const About = () => {
+  const headingColor = isDarkMode ? "text-slate-100" : "text-slate-800";
+  const paragraphColor = isDarkMode ? "text-slate-300" : "text-slate-700";
+  const highlightTextColor = isDarkMode ? "text-blue-400" : "text-blue-600";
+  const secondaryHighlightColor = isDarkMode ? "text-teal-400" : "text-teal-600";
+
+  // Profile Pic Border Color - choose one that contrasts well
+  const profileBorderColor = isDarkMode ? "border-slate-900" : "border-slate-100";
+  // -----------------------------------------------------
+
+  // Animation Variants
+  const bannerVariants = {
+    hidden: { opacity: 0, y: -30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  };
+
+  const profilePicVariants = {
+    hidden: { opacity: 0, scale: 0.5 },
+    visible: { opacity: 1, scale: 1, transition: { type: "spring", stiffness: 150, damping: 15, delay: 0.2 } }
+  };
+
+  const contentContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.4 } } // Delay content animation
+  };
+
+  const contentItemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+  };
+
+
   return (
     <section
       id="about"
-      className="relative flex flex-col items-center px-8 py-16 bg-gradient-to-r from-gray-100 via-blue-100 to-gray-100 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 text-gray-900 dark:text-gray-100"
+      // Use simple background - banner creates top visual. Ensure enough padding overall.
+      className={`w-full ${isDarkMode ? darkBg : lightBg} overflow-hidden pt-0 pb-16 md:pb-24`} // No top padding, rely on banner height. Added bottom padding.
     >
-      
+      {/* Banner and Profile Picture Container */}
+      <motion.div
+        className="relative w-full h-52 md:h-64 lg:h-72" // Adjust banner height as needed
+        variants={bannerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
+        {/* Banner Image */}
+        <img
+          src={bannerPhotoPath}
+          alt="Professional Banner"
+          className="absolute inset-0 w-full h-full object-cover" // Cover the container
+        />
+        {/* Optional: Dark overlay for better profile pic contrast */}
+        <div className="absolute inset-0 bg-black/20 dark:bg-black/40"></div>
 
-      {/* Highlights Section */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 z-5">
-        {highlights.map((highlight, idx) => (
-          <div
-            key={idx}
-            className={`flex flex-col items-center p-8 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl ${highlight.bg}`}
-          >
-            <div className="text-5xl text-white mb-4">
-              {highlight.icon}
-            </div>
-            <h4 className="text-xl font-semibold text-white mb-2">
-              {highlight.title}
-            </h4>
-            <p className="text-gray-200 text-sm text-center">
-              {highlight.description}
-            </p>
-          </div>
-        ))}
-      </div>
-
-      {/* Decorative Waves */}
-      {/* <div className="absolute inset-x-0 bottom-0 transform translate-y-1/2 pointer-events-none">
-        <svg
-          className="w-full"
-          viewBox="0 0 1440 320"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+        {/* Profile Picture */}
+        <motion.div
+          className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 z-10`} // Center and hang halfway down
+          variants={profilePicVariants}
+          // initial="hidden" // Animation handled by parent's whileInView
+          // whileInView="visible" // Animation handled by parent's whileInView
+          // viewport={{ once: true }}
         >
-          <path
-            fillOpacity="1"
-            d="M0,96L48,122.7C96,149,192,203,288,213.3C384,224,480,192,576,160C672,128,768,96,864,106.7C960,117,1056,171,1152,176C1248,181,1344,139,1392,117.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-            fill="#f9fafb"
-            className="dark:fill-gray-900"
-          ></path>
-        </svg>
-      </div> */}
-      <div className="absolute inset-x-0 top-0 transform -translate-y-2/3 pointer-events-none z-0">
-          <svg
-            className="w-full"
-            viewBox="0 0 1440 320"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fillOpacity="1"
-              d="M0,320L48,314.7C96,309,192,299,288,261.3C384,224,480,160,576,133.3C672,107,768,117,864,144C960,171,1056,213,1152,213.3C1248,213,1344,171,1392,149.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-              fill="#ffffff"
-              className="dark:fill-gray-800"
-            ></path>
-          </svg>
-        </div>
+          <motion.img
+            src={profilePhoto}
+            alt="Paramjeet Singh"
+            // Consistent rounded style, size, border, shadow
+            className={`w-32 h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 rounded-full object-cover border-4 ${profileBorderColor} shadow-xl`}
+            whileHover={{ scale: 1.05, boxShadow: '0px 10px 25px rgba(0, 0, 0, 0.3)' }}
+            transition={{ type: "spring", stiffness: 300 }}
+          />
+        </motion.div>
+      </motion.div>
+
+      {/* Text Content Area */}
+      <motion.div
+        // Needs top padding to clear the hanging profile picture
+        className="w-full max-w-4xl mx-auto px-6 pt-24 md:pt-28 lg:pt-32" // Adjust padding top based on profile pic size
+        variants={contentContainerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }} // Start animation when 20% is visible
+      >
+        <motion.h2 variants={contentItemVariants} className={`text-3xl md:text-4xl font-bold mb-6 text-center ${headingColor}`}>
+          About Me
+        </motion.h2>
+
+        {/* Paragraph 1: Intro & Current Focus */}
+        <motion.p variants={contentItemVariants} className={`mb-4 text-base md:text-lg leading-relaxed text-center ${paragraphColor}`}>
+          Hello! I'm <span className={`font-semibold ${highlightTextColor}`}>Paramjeet Singh</span>, currently pursuing my Master's (M.Tech) in Computer Science at <span className="font-medium">IIT Kharagpur</span>. I'm passionate about building efficient software solutions, focusing particularly on <span className={`font-medium ${highlightTextColor}`}>Machine Learning</span> and core Computer Science <span className={`font-medium ${secondaryHighlightColor}`}>systems</span>.
+        </motion.p>
+
+        {/* Paragraph 2: Technical Approach & Key Skills */}
+        <motion.p variants={contentItemVariants} className={`mb-4 text-base md:text-lg leading-relaxed text-center ${paragraphColor}`}>
+          My studies provide a strong foundation in algorithms, data structures, and <span className={`font-medium ${secondaryHighlightColor}`}>C++</span> systems programming. I enjoy developing <span className={`font-medium ${highlightTextColor}`}>Machine Learning</span> models with <span className={`font-medium ${highlightTextColor}`}>Python</span> (Scikit-learn, etc.) and building full-stack web apps with the <span className={`font-medium ${highlightTextColor}`}>MERN stack</span>.
+        </motion.p>
+
+        {/* Paragraph 3: Problem Solving & Interests */}
+        <motion.p variants={contentItemVariants} className={`mb-4 text-base md:text-lg leading-relaxed text-center ${paragraphColor}`}>
+          I love tackling coding challenges (like <span className="font-medium">500+ problems</span> on LeetCode) and exploring new tech like <span className="font-medium">Generative AI</span>. I use tools like <span className="font-medium">Git, Docker,</span> and cloud platforms daily.
+        </motion.p>
+
+         {/* Paragraph 4: Goal & Closing */}
+        <motion.p variants={contentItemVariants} className={`text-base md:text-lg leading-relaxed text-center ${paragraphColor}`}>
+          Eager to contribute to challenging <span className={`font-medium ${highlightTextColor}`}>Machine Learning</span> or <span className={`font-medium ${secondaryHighlightColor}`}>systems development</span> projects. Feel free to <a href="#projects" className={`underline hover:text-blue-500 ${highlightTextColor} font-medium`}>check out my work</a> or <a href="#contact" className={`underline hover:text-blue-500 ${highlightTextColor} font-medium`}>connect with me!</a>
+        </motion.p>
+      </motion.div>
+
     </section>
   );
 };

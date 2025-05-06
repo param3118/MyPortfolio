@@ -1,16 +1,25 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
-  darkMode: "class", // Enable dark mode
-  content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
+  darkMode: 'class', // or 'media'
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {
-      colors: {
-        primary: "#1E40AF", // Custom Indigo
-        secondary: "#9333EA", // Custom Purple
-        accent: "#22D3EE", // Custom Cyan
-        lightBg: "#f0f0f0",
-        darkBg: "#0F172A", // Custom Dark Background
+      fontFamily: {
+        sans: ['Inter', ...defaultTheme.fontFamily.sans],
       },
+      // Optional: Define palette colors here if you want custom names
+      // colors: {
+      //   'primary': {
+      //     light: '#2563EB', // blue-600
+      //     dark: '#3B82F6' // blue-500
+      //   },
+      //   // ... other custom colors
+      // }
     },
   },
   plugins: [],
-};
+}

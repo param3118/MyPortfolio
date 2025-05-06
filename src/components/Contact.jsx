@@ -1,15 +1,53 @@
 import React, { useRef, useState } from "react";
-import { motion } from "framer-motion";
-import EarthCanvas from "./EarthCanvas";
-import Modal from "./Modal";
+import { motion, AnimatePresence } from "framer-motion";
 import emailjs from "emailjs-com";
+import { FaEnvelope, FaLinkedin, FaGithub, FaPaperPlane } from "react-icons/fa"; // Added icons
 
-const Contact = () => {
+const Contact = ({ isDarkMode }) => {
   const formRef = useRef();
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [loading, setLoading] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [modalContent, setModalContent] = useState({});
+
+  // Consistent background gradients (Match Projects/Hero or define globally)
+  const lightGradient = "bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100";
+  const darkGradient = "bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900";
+
+  // Consistent text colors
+  const headingColor = isDarkMode ? "text-slate-100" : "text-slate-800";
+  const paragraphColor = isDarkMode ? "text-slate-400" : "text-slate-600";
+  const inputBgColor = isDarkMode ? "bg-slate-800" : "bg-slate-100";
+  const inputTextColor = isDarkMode ? "text-slate-200" : "text-slate-900";
+  const inputBorderColor = isDarkMode ? "border-slate-600" : "border-slate-300";
+  const focusRingColor = isDarkMode ? "focus:ring-blue-500" : "focus:ring-blue-600";
+
+  // Consistent Button Style (Matches Hero section button)
+  const buttonClasses = `w-full p-3 font-semibold rounded-lg shadow-lg flex justify-center items-center gap-2 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+    isDarkMode
+    ? 'bg-blue-600 hover:bg-blue-500 text-white focus:ring-blue-500 focus:ring-offset-slate-900'
+    : 'bg-blue-600 hover:bg-blue-700 text-white focus:ring-blue-600 focus:ring-offset-white'
+  }`;
+
+  // Animation variants for staggering
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 100 } }
+  };
+
+  const modalVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: { opacity: 1, scale: 1 },
+    exit: { opacity: 0, scale: 0.9 }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,40 +59,47 @@ const Contact = () => {
 
     if (form.name.trim() === "" || form.email.trim() === "" || form.message.trim() === "") {
       setModalContent({
-        title: "Validation Error",
-        message: "Please fill in all the fields properly.",
+        title: "Hold On!",
+        message: "Please fill in all fields before sending.",
         buttonText: "Okay",
+        isError: true,
       });
       setIsModalVisible(true);
       return;
     }
 
     setLoading(true);
+    // Replace with your actual EmailJS Service ID, Template ID, and Public Key
     emailjs
       .send(
-        "service_tetxo02", // service ID
-        "template_760i5e1", // template ID
+        "YOUR_SERVICE_ID",     // Replace with your EmailJS Service ID
+        "YOUR_TEMPLATE_ID",    // Replace with your EmailJS Template ID
         {
-          name: form.name,
-          email: form.email,
+          from_name: form.name, // Ensure template variables match
+          to_name: "Paramjeet", // Or your name
+          from_email: form.email,
+          to_email: "3118ps9@gmail.com", // Your receiving email
           message: form.message,
         },
-        "pP2NkV30ouyRTfJwo" // public key
+        "YOUR_PUBLIC_KEY"       // Replace with your EmailJS Public Key
       )
       .then(() => {
         setModalContent({
           title: "Success!",
-          message: "Your message has been sent successfully!",
-          buttonText: "Close",
+          message: "Message sent successfully! I'll get back to you soon.",
+          buttonText: "Great!",
+          isError: false,
         });
         setIsModalVisible(true);
         setForm({ name: "", email: "", message: "" });
       })
-      .catch(() => {
+      .catch((error) => {
+        console.error("EmailJS Error:", error); // Log the error for debugging
         setModalContent({
-          title: "Error!",
-          message: "Something went wrong. Please try again later.",
-          buttonText: "Retry",
+          title: "Oops!",
+          message: "Something went wrong. Please try again later or reach out directly via email.",
+          buttonText: "Okay",
+          isError: true,
         });
         setIsModalVisible(true);
       })
@@ -62,87 +107,133 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact"
-    className="w-full min-h-[72vh] p-6 flex flex-col items-center justify-start bg-gradient-to-r from-blue-100 via-blue-100 to-gray-100 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 overflow-auto">
-      <div
-        className="flex flex-col md:flex-row items-center justify-center overflow-auto"
-
+    <section
+      id="contact"
+      className={`w-full min-h-screen flex items-center justify-center p-6 md:p-12 ${isDarkMode ? darkGradient : lightGradient} overflow-hidden`}
+    >
+      <motion.div
+        className="w-full max-w-6xl mx-auto flex flex-col lg:flex-row gap-10 lg:gap-16 bg-white dark:bg-slate-800/50 backdrop-blur-sm shadow-2xl rounded-xl p-8 md:p-12"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }} // Trigger animation when 20% is visible
       >
-        {/* EarthCanvas Section */}
-        {/* <motion.div
-          initial={{ x: -50, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="flex-1 p-4 rounded-lg w-full max-w-md"
-          style={{ maxWidth: "500px", height: "100%" }}
-        >
-          <EarthCanvas />
-        </motion.div> */}
-
-        {/* Contact Form Section */}
-        <motion.div
-          initial={{ x: 50, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="flex-1 bg-gray-200 dark:bg-gray-700 p-4 rounded-lg shadow-md w-full max-w-md"
-        >
-          <h3 className="text-xl font-bold text-center mb-4 text-gray-700 dark:text-gray-200">
-            Contact Me
-          </h3>
-          <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
-            <input
-              type="text"
-              name="name"
-              value={form.name}
-              onChange={handleChange}
-              placeholder="Your Name"
-              aria-label="Your Name"
-              className="w-full p-3 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-200 rounded"
-              required
-            />
-            <input
-              type="email"
-              name="email"
-              value={form.email}
-              onChange={handleChange}
-              placeholder="Your Email"
-              aria-label="Your Email"
-              className="w-full p-3 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-200 rounded"
-              required
-            />
-            <textarea
-              name="message"
-              value={form.message}
-              onChange={handleChange}
-              placeholder="Your Message"
-              aria-label="Your Message"
-              className="w-full p-3 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-200 rounded"
-              rows="4"
-              required
-            />
-            <button
-              type="submit"
-              className="w-full p-3 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded shadow-lg flex justify-center items-center"
-            >
-              {loading ? (
-                <span className="animate-spin w-5 h-5 border-t-2 border-white rounded-full"></span>
-              ) : (
-                "Send Message"
-              )}
-            </button>
-          </form>
+        {/* Left Column: Contact Info */}
+        <motion.div className="lg:w-1/3" variants={itemVariants}>
+          <h2 className={`text-3xl font-bold mb-4 ${headingColor}`}>Get In Touch</h2>
+          <p className={`mb-6 ${paragraphColor}`}>
+            Have a project in mind, a question, or just want to connect? Feel free to send me a message!
+          </p>
+          <div className="space-y-4">
+            <a href="mailto:3118ps9@gmail.com" className={`flex items-center gap-3 ${paragraphColor} hover:text-blue-600 dark:hover:text-blue-400 transition-colors`}>
+              <FaEnvelope className="text-blue-600 dark:text-blue-400" size={20} />
+              <span>3118ps9@gmail.com</span> {/* Replace with your email */}
+            </a>
+            <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className={`flex items-center gap-3 ${paragraphColor} hover:text-blue-600 dark:hover:text-blue-400 transition-colors`}>
+              <FaLinkedin className="text-blue-600 dark:text-blue-400" size={20} />
+              <span>LinkedIn Profile</span> {/* Replace with your LinkedIn */}
+            </a>
+            <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className={`flex items-center gap-3 ${paragraphColor} hover:text-blue-600 dark:hover:text-blue-400 transition-colors`}>
+              <FaGithub className="text-blue-600 dark:text-blue-400" size={20} />
+              <span>GitHub Profile</span> {/* Replace with your GitHub */}
+            </a>
+          </div>
         </motion.div>
 
-        {/* Modal Section */}
-        {/* {isModalVisible && (
-          <Modal
-            title={modalContent.title}
-            message={modalContent.message}
-            buttonText={modalContent.buttonText}
-            setIsModalVisible={() => setIsModalVisible(false)}
-          />
-        )} */}
-      </div>
+        {/* Right Column: Contact Form */}
+        <motion.div className="lg:w-2/3" variants={itemVariants}>
+          <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
+            <motion.div variants={itemVariants}>
+              <label htmlFor="name" className={`block text-sm font-medium mb-1 ${paragraphColor}`}>Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+                placeholder="What's your name?"
+                aria-label="Your Name"
+                className={`w-full p-3 rounded-md border ${inputBorderColor} ${inputBgColor} ${inputTextColor} focus:outline-none focus:ring-2 ${focusRingColor} transition`}
+                required
+              />
+            </motion.div>
+            <motion.div variants={itemVariants}>
+              <label htmlFor="email" className={`block text-sm font-medium mb-1 ${paragraphColor}`}>Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                placeholder="Your email address"
+                aria-label="Your Email"
+                className={`w-full p-3 rounded-md border ${inputBorderColor} ${inputBgColor} ${inputTextColor} focus:outline-none focus:ring-2 ${focusRingColor} transition`}
+                required
+              />
+            </motion.div>
+            <motion.div variants={itemVariants}>
+              <label htmlFor="message" className={`block text-sm font-medium mb-1 ${paragraphColor}`}>Message</label>
+              <textarea
+                id="message"
+                name="message"
+                value={form.message}
+                onChange={handleChange}
+                placeholder="Tell me about your project or query..."
+                aria-label="Your Message"
+                className={`w-full p-3 rounded-md border ${inputBorderColor} ${inputBgColor} ${inputTextColor} focus:outline-none focus:ring-2 ${focusRingColor} transition`}
+                rows="5"
+                required
+              />
+            </motion.div>
+            <motion.div variants={itemVariants}>
+              <button type="submit" className={buttonClasses} disabled={loading}>
+                {loading ? (
+                  <span className="animate-spin w-5 h-5 border-t-2 border-b-2 border-white rounded-full"></span>
+                ) : (
+                  <>
+                    Send Message <FaPaperPlane />
+                  </>
+                )}
+              </button>
+            </motion.div>
+          </form>
+        </motion.div>
+      </motion.div>
+
+      {/* Feedback Modal */}
+      <AnimatePresence>
+        {isModalVisible && (
+          <motion.div
+            className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4"
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={modalVariants}
+            onClick={() => setIsModalVisible(false)} // Close modal on overlay click
+          >
+            <motion.div
+              className={`relative rounded-lg shadow-xl p-6 w-full max-w-md ${isDarkMode ? 'bg-slate-800' : 'bg-white'}`}
+              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
+              variants={itemVariants} // Reuse item animation for content
+            >
+              <h3 className={`text-xl font-bold mb-3 ${modalContent.isError ? (isDarkMode ? 'text-red-400' : 'text-red-600') : (isDarkMode ? 'text-green-400' : 'text-green-600')}`}>
+                {modalContent.title}
+              </h3>
+              <p className={`mb-5 ${paragraphColor}`}>{modalContent.message}</p>
+              <button
+                onClick={() => setIsModalVisible(false)}
+                className={`w-full py-2 px-4 rounded-md font-semibold transition ${
+                  modalContent.isError
+                    ? (isDarkMode ? 'bg-red-600 hover:bg-red-500' : 'bg-red-600 hover:bg-red-700')
+                    : (isDarkMode ? 'bg-blue-600 hover:bg-blue-500' : 'bg-blue-600 hover:bg-blue-700')
+                  } text-white focus:outline-none focus:ring-2 ${modalContent.isError ? 'focus:ring-red-500' : 'focus:ring-blue-500'} focus:ring-offset-2 ${isDarkMode ? 'focus:ring-offset-slate-800' : 'focus:ring-offset-white'}`}
+              >
+                {modalContent.buttonText}
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
