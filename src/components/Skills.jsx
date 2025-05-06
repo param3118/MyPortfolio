@@ -81,7 +81,15 @@ const dsSkills = [
     glowColor: "rgba(192,132,252,0.6)" 
   },
 ];
-
+const coreSubjects = [
+  { name: "Data Structures", icon: "📊", glowColor: "rgba(59,130,246,0.6)" },
+  { name: "Algorithms", icon: "⚡", glowColor: "rgba(234,88,12,0.6)" },
+  { name: "DBMS", icon: "🗃️", glowColor: "rgba(22,163,74,0.6)" },
+  { name: "Computer Networks", icon: "🌐", glowColor: "rgba(168,85,247,0.6)" },
+  { name: "Operating Systems", icon: "💻", glowColor: "rgba(239,68,68,0.6)" },
+  { name: "OOPS", icon: "🧩", glowColor: "rgba(234,179,8,0.6)" },
+  { name: "System Design", icon: "🏗️", glowColor: "rgba(192,132,252,0.6)" },
+];
 const Skills = ({ isDarkMode }) => {
   const headingColor = isDarkMode ? "text-slate-100" : "text-slate-800";
   const subHeadingColor = isDarkMode ? "text-blue-400" : "text-blue-600";
@@ -132,13 +140,21 @@ const Skills = ({ isDarkMode }) => {
   const renderRow = skills => (
     skills.map((skill, i) => (
       <motion.div 
-        key={skill.name + i}
-        className="flex flex-col items-center justify-center p-4 rounded-xl shadow-lg border transition duration-300 ease-out hover:shadow-2xl"
-        style={{ width: '140px', height: '140px' }}
-        initial="initial"
-        whileHover="hover"
-        variants={cardVariants}
-      >
+      key={i}
+      variants={cardVariants}
+      initial="initial"
+      whileHover="hover"
+      className="flex flex-col items-center justify-center 
+                 p-4 md:p-5 lg:p-6           // Responsive padding
+                 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 
+                 w-[120px] h-[120px]         // Base small screen size
+                 sm:w-[140px] sm:h-[140px]    // Medium screens
+                 md:w-[150px] md:h-[150px]    // Larger screens
+                 mx-2 sm:mx-3                 // Horizontal margin
+                 my-2                         // Vertical margin
+                 flex-shrink-0                // Prevent shrinking
+                 transition-all duration-300 hover:bg-white/10"
+    >
         <motion.div 
           className="text-5xl mb-2"
           style={{ "--glow-color": skill.glowColor }}
@@ -155,8 +171,10 @@ const Skills = ({ isDarkMode }) => {
 
   return (
     <section id="skills" className={`${isDarkMode ? 'bg-slate-900' : 'bg-white'} py-20 overflow-hidden`}>
-      <div className="container mx-auto px-6 text-center ">
-        <motion.h2 initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ duration:0.5 }} className={`text-3xl md:text-4xl font-bold mb-12 ${headingColor}`}>Technical Skills</motion.h2>      
+      <div className="container mx-auto px-6 text-center">
+      <motion.h2 initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ duration:0.5 }} className={`text-3xl md:text-4xl font-bold mb-12 ${headingColor}`}>
+        Technical Skills
+      </motion.h2>      
         <div className="relative group px-10 md:px-20">
           <button onClick={() => handleScroll('left')} disabled={!canLeft}
             className={`${navButtonBase} ${navButtonTheme} left-0 -translate-x-1/2 opacity-0 group-hover:opacity-100`}>
@@ -179,7 +197,69 @@ const Skills = ({ isDarkMode }) => {
           </button>
         </div>
       </div>
+      <div className="mt-16 w-full flex flex-col items-center">
+  <motion.h3 
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    className={`text-2xl md:text-3xl font-bold mb-8 ${headingColor}`}
+  >
+    CS Core Subjects
+  </motion.h3>
+        
+        <div className="relative group px-10 md:px-20">
+          <button 
+            onClick={() => handleScroll('left')} 
+            disabled={!canLeft}
+            className={`${navButtonBase} ${navButtonTheme} left-0 -translate-x-1/2 opacity-0 group-hover:opacity-100`}
+          >
+            <FaChevronLeft size={22}/>
+          </button>
 
+          <div 
+            ref={scrollRef} 
+            className="overflow-x-auto overflow-y-hidden py-2"
+            style={{ scrollBehavior:'smooth', scrollbarWidth:'none', msOverflowStyle:'none' }}
+          >
+            <div className="flex space-x-6 justify-start w-max mx-auto">
+              {coreSubjects.map((subject, i) => (
+                <motion.div 
+                  key={i}
+                  variants={cardVariants}
+                  initial="initial"
+                  whileHover="hover"
+                  className="flex flex-col items-center justify-center 
+                            p-4 md:p-5 lg:p-6
+                            rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 
+                            w-[120px] h-[120px]
+                            sm:w-[140px] sm:h-[140px]
+                            flex-shrink-0
+                            transition-all duration-300 hover:bg-white/10"
+                >
+                  <motion.div 
+                    className="text-4xl mb-2"
+                    style={{ "--glow-color": subject.glowColor }}
+                    variants={iconVariants}
+                  >
+                    {subject.icon}
+                  </motion.div>
+                  <h3 className={`text-sm font-semibold text-center ${isDarkMode ? 'text-slate-200' : 'text-slate-700'}`}>
+                    {subject.icon} {subject.name}
+                  </h3>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          <button 
+            onClick={() => handleScroll('right')} 
+            disabled={!canRight}
+            className={`${navButtonBase} ${navButtonTheme} right-0 translate-x-1/2 opacity-0 group-hover:opacity-100`}
+          >
+            <FaChevronRight size={22}/>
+          </button>
+        </div>
+      </div> 
       <style jsx='true' global='true'>{`
         div::-webkit-scrollbar { display: none !important; }
       `}</style>
