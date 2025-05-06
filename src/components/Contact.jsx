@@ -127,15 +127,15 @@ const Contact = ({ isDarkMode }) => {
           <div className="space-y-4">
             <a href="mailto:3118ps9@gmail.com" className={`flex items-center gap-3 ${paragraphColor} hover:text-blue-600 dark:hover:text-blue-400 transition-colors`}>
               <FaEnvelope className="text-blue-600 dark:text-blue-400" size={20} />
-              <span>3118ps9@gmail.com</span> {/* Replace with your email */}
+              <span>3118ps9@gmail.com</span> 
             </a>
-            <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className={`flex items-center gap-3 ${paragraphColor} hover:text-blue-600 dark:hover:text-blue-400 transition-colors`}>
+            <a href="https://www.linkedin.com/in/paramjeet-singh-b50733202/" target="_blank" rel="noopener noreferrer" className={`flex items-center gap-3 ${paragraphColor} hover:text-blue-600 dark:hover:text-blue-400 transition-colors`}>
               <FaLinkedin className="text-blue-600 dark:text-blue-400" size={20} />
-              <span>LinkedIn Profile</span> {/* Replace with your LinkedIn */}
+              <span>LinkedIn Profile</span> 
             </a>
-            <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className={`flex items-center gap-3 ${paragraphColor} hover:text-blue-600 dark:hover:text-blue-400 transition-colors`}>
+            <a href="https://github.com/param3118" target="_blank" rel="noopener noreferrer" className={`flex items-center gap-3 ${paragraphColor} hover:text-blue-600 dark:hover:text-blue-400 transition-colors`}>
               <FaGithub className="text-blue-600 dark:text-blue-400" size={20} />
-              <span>GitHub Profile</span> {/* Replace with your GitHub */}
+              <span>GitHub Profile</span> 
             </a>
           </div>
         </motion.div>

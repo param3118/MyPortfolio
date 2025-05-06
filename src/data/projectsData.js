@@ -83,5 +83,5 @@ const featuredProjects = [
     // Add more of your academic projects here
   ];
   
-  export { featuredProjects, academicProjects };
+  export   { featuredProjects };
   

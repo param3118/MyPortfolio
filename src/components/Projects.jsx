@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
 // --- Import project data from the new file ---
-import { featuredProjects, academicProjects } from "../data/projectsData"; // Adjust path if necessary
+import { featuredProjects } from "../data/projectsData"; // Adjust path if necessary
 // -----------------------------------------------
 
 // Define calculateLinearPosition function (Keep as is from your previous code)
@@ -88,17 +88,13 @@ const Projects = ({ isDarkMode,onViewAllProjects  }) => {
             viewport={{ once: true }}
             className="relative z-10 w-full"
         >
-            <h2 className={`text-4xl font-bold mb-4 text-center ${headingColor}`}>My Projects</h2>
-            <p className={`text-lg mb-12 text-center max-w-2xl mx-auto ${paragraphColor}`}>
-                A selection of projects I've worked on, showcasing different skills and technologies.
-            </p>
+            <h2 className={`text-4xl font-bold mb-4 text-center ${headingColor}`}>Featured Projects</h2>
 
             {/* Featured Projects Carousel */}
             {/* Check if featuredProjects has items before rendering carousel */}
             {featuredProjects && featuredProjects.length > 0 ? (
                 <>
-                    <h3 className={`text-2xl font-semibold mb-6 text-center ${headingColor}`}>Featured Work</h3>
-                    <div className="relative w-full max-w-6xl mx-auto h-[500px] flex items-center justify-center mb-16">
+                    <div className="relative w-full max-w-6xl mx-auto h-[500px] flex items-center justify-center">
                         <button className={`${navButtonClasses} absolute left-0 sm:left-4 md:-left-4 transform -translate-y-1/2 top-1/2`} onClick={prevSlide} aria-label="Previous Project">
                             ❮
                         </button>
@@ -228,53 +224,9 @@ const Projects = ({ isDarkMode,onViewAllProjects  }) => {
 
 
             {/* Academic ML & NLP Projects Section */}
-            {academicProjects && academicProjects.length > 0 ? (
-                <div className="w-full max-w-6xl mx-auto mt-12">
-                    <h3 className={`text-2xl font-semibold mb-6 text-center ${headingColor}`}>Academic & Other Projects</h3>
-                    <motion.div
-                        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
-                        transition={{ staggerChildren: 0.1 }}
-                    >
-                        {academicProjects.map((project, index) => (
-                            <motion.div
-                                key={project.title + index + 'academic'}
-                                className={`p-5 rounded-lg shadow-lg flex flex-col justify-between ${isDarkMode ? cardBgDark : cardBgLight}`}
-                                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                            >
-                                <div>
-                                    <h4 className={`text-lg font-bold mb-2 ${cardHeadingColor}`}>{project.title}</h4>
-                                    <p className={`text-sm mb-4 ${cardTextColor}`}>{project.description}</p>
-                                    <div className="flex flex-wrap gap-2 mb-4">
-                                        {project.technologies.map((tech, i) => (
-                                            <span key={i} className={i % 2 === 0 ? primaryTagClasses : secondaryTagClasses}>
-                                                {tech}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-                                {project.github && (
-                                    <a
-                                        href={project.github}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className={`${secondaryButtonClasses} w-full mt-4`}
-                                        aria-label={`View ${project.title} on GitHub`}
-                                    >
-                                       <FaGithub /> View on GitHub
-                                    </a>
-                                )}
-                            </motion.div>
-                        ))}
-                    </motion.div>
-                </div>
-            ) : (
-                 <p className={`text-center ${paragraphColor}`}>No academic projects to display yet.</p>
-            )}
+            
         </motion.div>
-        <div className="mt-12 text-center">
+        <div className=" text-center ">
         <button
           onClick={onViewAllProjects} // Call the function passed from App.jsx
           className={`inline-block py-3 px-8 rounded-lg font-semibold shadow-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 ${

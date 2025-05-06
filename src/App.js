@@ -6,7 +6,6 @@ import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import About from "./components/About";
-import Settings from "./components/Settings"; // If you need this, consider its purpose
 import Footer from "./components/Footer"; // Assuming you have a Footer
 import AllProjectsArchive from './components/AllProjectsArchive';
 import AOS from "aos";
@@ -26,7 +25,6 @@ function App() {
   });
 
   const [showAllProjects, setShowAllProjects] = useState(false);
-  const [isManageProjectsVisible, setIsManageProjectsVisible] = useState(false);
 
   // Effect to update localStorage and body class when dark mode changes
   useEffect(() => {
@@ -54,9 +52,6 @@ function App() {
     setIsDarkMode(prevMode => !prevMode);
   };
 
-  const toggleManageProjects = () => {
-    setIsManageProjectsVisible(prev => !prev);
-  };
 
   const handleViewAllProjectsArchive = () => {
     setShowAllProjects(true);
