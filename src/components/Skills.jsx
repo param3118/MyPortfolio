@@ -171,7 +171,7 @@ const Skills = ({ isDarkMode }) => {
         </div>
       </div>
 
-      <style jsx global>{`
+      <style jsx='true' global='true'>{`
         div::-webkit-scrollbar { display: none !important; }
       `}</style>
     </section>
