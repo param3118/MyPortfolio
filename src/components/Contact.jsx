@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState,useEffect  } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import emailjs from "emailjs-com";
 import { FaEnvelope, FaLinkedin, FaGithub, FaPaperPlane } from "react-icons/fa"; // Added icons
@@ -28,7 +28,9 @@ const Contact = ({ isDarkMode }) => {
     ? 'bg-blue-600 hover:bg-blue-500 text-white focus:ring-blue-500 focus:ring-offset-slate-900'
     : 'bg-blue-600 hover:bg-blue-700 text-white focus:ring-blue-600 focus:ring-offset-white'
   }`;
-
+  useEffect(() => {
+    emailjs.init(process.env.REACT_APP_EMAILJS_PUBLIC_KEY);
+  }, []);
   // Animation variants for staggering
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -69,11 +71,13 @@ const Contact = ({ isDarkMode }) => {
     }
 
     setLoading(true);
+    
+    
     // Replace with your actual EmailJS Service ID, Template ID, and Public Key
     emailjs
       .send(
-        "YOUR_SERVICE_ID",     // Replace with your EmailJS Service ID
-        "YOUR_TEMPLATE_ID",    // Replace with your EmailJS Template ID
+        process.env.REACT_APP_EMAILJS_SERVICE_ID,
+    process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
         {
           from_name: form.name, // Ensure template variables match
           to_name: "Paramjeet", // Or your name
@@ -81,7 +85,7 @@ const Contact = ({ isDarkMode }) => {
           to_email: "3118ps9@gmail.com", // Your receiving email
           message: form.message,
         },
-        "YOUR_PUBLIC_KEY"       // Replace with your EmailJS Public Key
+        process.env.REACT_APP_EMAILJS_PUBLIC_KEY      // Replace with your EmailJS Public Key
       )
       .then(() => {
         setModalContent({

@@ -2,73 +2,84 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
-  FaReact, FaNodeJs, FaJsSquare, FaHtml5, FaCss3Alt, FaDocker, FaAws, FaCss3,
-  FaPython, FaDatabase, FaPython as FaNumPy, FaPython as FaPandas, FaDatabase as FaMongo,
-  FaChevronLeft, FaChevronRight
+  FaReact,
+  FaNodeJs,
+  FaJsSquare,
+  FaHtml5,
+  FaCss3Alt,
+  FaPython,
+  FaChevronLeft,
+  FaChevronRight,
+  FaChartLine
 } from "react-icons/fa";
-
+import { SiExpress,SiNumpy, SiPandas,SiMongodb, SiScikitlearn,SiCplusplus ,SiHuggingface, SiPytorch } from "react-icons/si";
+import { TbSql } from "react-icons/tb";
+import {  BsTranslate } from 'react-icons/bs';
+import { GiArtificialIntelligence } from 'react-icons/gi'
 // SPLIT SKILLS: first row dev, second row data-science
 const devSkills = [
-  { name: "React", icon: <FaReact className="text-sky-500" />, glowColor: "rgba(14,165,233,0.6)" },
-  { name: "Node.js", icon: <FaNodeJs className="text-green-500" />, glowColor: "rgba(34,197,94,0.6)" },
-  { name: "JavaScript", icon: <FaJsSquare className="text-yellow-400" />, glowColor: "rgba(250,204,21,0.6)" },
   { name: "HTML5", icon: <FaHtml5 className="text-orange-600" />, glowColor: "rgba(234,88,12,0.6)" },
   { name: "CSS3", icon: <FaCss3Alt className="text-blue-600" />, glowColor: "rgba(37,99,235,0.6)" },
-  { name: "Docker", icon: <FaDocker className="text-blue-500" />, glowColor: "rgba(59,130,246,0.6)" },
-  { name: "AWS", icon: <FaAws className="text-orange-500" />, glowColor: "rgba(249,115,22,0.6)" },
+  { name: "JavaScript", icon: <FaJsSquare className="text-yellow-400" />, glowColor: "rgba(250,204,21,0.6)" },
   { name: "React", icon: <FaReact className="text-sky-500" />, glowColor: "rgba(14,165,233,0.6)" },
   { name: "Node.js", icon: <FaNodeJs className="text-green-500" />, glowColor: "rgba(34,197,94,0.6)" },
-  { name: "JavaScript", icon: <FaJsSquare className="text-yellow-400" />, glowColor: "rgba(250,204,21,0.6)" },
-  { name: "HTML5", icon: <FaHtml5 className="text-orange-600" />, glowColor: "rgba(234,88,12,0.6)" },
-  { name: "CSS3", icon: <FaCss3Alt className="text-blue-600" />, glowColor: "rgba(37,99,235,0.6)" },
-  { name: "Docker", icon: <FaDocker className="text-blue-500" />, glowColor: "rgba(59,130,246,0.6)" },
-  { name: "AWS", icon: <FaAws className="text-orange-500" />, glowColor: "rgba(249,115,22,0.6)" },
-  { name: "React", icon: <FaReact className="text-sky-500" />, glowColor: "rgba(14,165,233,0.6)" },
-  { name: "Node.js", icon: <FaNodeJs className="text-green-500" />, glowColor: "rgba(34,197,94,0.6)" },
-  { name: "JavaScript", icon: <FaJsSquare className="text-yellow-400" />, glowColor: "rgba(250,204,21,0.6)" },
-  { name: "HTML5", icon: <FaHtml5 className="text-orange-600" />, glowColor: "rgba(234,88,12,0.6)" },
-  { name: "CSS3", icon: <FaCss3Alt className="text-blue-600" />, glowColor: "rgba(37,99,235,0.6)" },
-  { name: "Docker", icon: <FaDocker className="text-blue-500" />, glowColor: "rgba(59,130,246,0.6)" },
-  { name: "AWS", icon: <FaAws className="text-orange-500" />, glowColor: "rgba(249,115,22,0.6)" },
-  { name: "React", icon: <FaReact className="text-sky-500" />, glowColor: "rgba(14,165,233,0.6)" },
-  { name: "Node.js", icon: <FaNodeJs className="text-green-500" />, glowColor: "rgba(34,197,94,0.6)" },
-  { name: "JavaScript", icon: <FaJsSquare className="text-yellow-400" />, glowColor: "rgba(250,204,21,0.6)" },
-  { name: "HTML5", icon: <FaHtml5 className="text-orange-600" />, glowColor: "rgba(234,88,12,0.6)" },
-  { name: "CSS3", icon: <FaCss3Alt className="text-blue-600" />, glowColor: "rgba(37,99,235,0.6)" },
-  { name: "Docker", icon: <FaDocker className="text-blue-500" />, glowColor: "rgba(59,130,246,0.6)" },
-  { name: "AWS", icon: <FaAws className="text-orange-500" />, glowColor: "rgba(249,115,22,0.6)" },
+  { name: "Express.js", icon: <SiExpress className="text-green-600" />, glowColor: "rgba(205, 182, 35, 0.6)" },
+  { name: "C++", icon: <SiCplusplus className="text-blue-700" />, glowColor: "rgba(29,78,216,0.6)" },
+  { name: "SQL", icon: <TbSql className="text-sky-500" />, glowColor: "rgba(14,165,233,0.6)" },
+  { name: "MongoDB", icon: <SiMongodb className="text-green-600" />, glowColor: "rgba(22,163,74,0.6)" },
 ];
+
 const dsSkills = [
-  { name: "Python", icon: <FaPython className="text-yellow-500" />, glowColor: "rgba(234,179,8,0.6)" },
-  { name: "NumPy", icon: <FaPython className="text-blue-400" />, glowColor: "rgba(96,165,250,0.6)" },
-  { name: "Pandas", icon: <FaPython className="text-indigo-400" />, glowColor: "rgba(129,140,248,0.6)" },
-  { name: "Databases", icon: <FaDatabase className="text-indigo-500" />, glowColor: "rgba(99,102,241,0.6)" },
-  { name: "MongoDB", icon: <FaMongo className="text-green-600" />, glowColor: "rgba(22,163,74,0.6)" },
-  { name: "Python", icon: <FaPython className="text-yellow-500" />, glowColor: "rgba(234,179,8,0.6)" },
-  { name: "NumPy", icon: <FaPython className="text-blue-400" />, glowColor: "rgba(96,165,250,0.6)" },
-  { name: "Pandas", icon: <FaPython className="text-indigo-400" />, glowColor: "rgba(129,140,248,0.6)" },
-  { name: "Databases", icon: <FaDatabase className="text-indigo-500" />, glowColor: "rgba(99,102,241,0.6)" },
-  { name: "MongoDB", icon: <FaMongo className="text-green-600" />, glowColor: "rgba(22,163,74,0.6)" },
-  { name: "Python", icon: <FaPython className="text-yellow-500" />, glowColor: "rgba(234,179,8,0.6)" },
-  { name: "NumPy", icon: <FaPython className="text-blue-400" />, glowColor: "rgba(96,165,250,0.6)" },
-  { name: "Pandas", icon: <FaPython className="text-indigo-400" />, glowColor: "rgba(129,140,248,0.6)" },
-  { name: "Databases", icon: <FaDatabase className="text-indigo-500" />, glowColor: "rgba(99,102,241,0.6)" },
-  { name: "MongoDB", icon: <FaMongo className="text-green-600" />, glowColor: "rgba(22,163,74,0.6)" },
-  { name: "Python", icon: <FaPython className="text-yellow-500" />, glowColor: "rgba(234,179,8,0.6)" },
-  { name: "NumPy", icon: <FaPython className="text-blue-400" />, glowColor: "rgba(96,165,250,0.6)" },
-  { name: "Pandas", icon: <FaPython className="text-indigo-400" />, glowColor: "rgba(129,140,248,0.6)" },
-  { name: "Databases", icon: <FaDatabase className="text-indigo-500" />, glowColor: "rgba(99,102,241,0.6)" },
-  { name: "MongoDB", icon: <FaMongo className="text-green-600" />, glowColor: "rgba(22,163,74,0.6)" },
-  { name: "Python", icon: <FaPython className="text-yellow-500" />, glowColor: "rgba(234,179,8,0.6)" },
-  { name: "NumPy", icon: <FaPython className="text-blue-400" />, glowColor: "rgba(96,165,250,0.6)" },
-  { name: "Pandas", icon: <FaPython className="text-indigo-400" />, glowColor: "rgba(129,140,248,0.6)" },
-  { name: "Databases", icon: <FaDatabase className="text-indigo-500" />, glowColor: "rgba(99,102,241,0.6)" },
-  { name: "MongoDB", icon: <FaMongo className="text-green-600" />, glowColor: "rgba(22,163,74,0.6)" },
-  { name: "Python", icon: <FaPython className="text-yellow-500" />, glowColor: "rgba(234,179,8,0.6)" },
-  { name: "NumPy", icon: <FaPython className="text-blue-400" />, glowColor: "rgba(96,165,250,0.6)" },
-  { name: "Pandas", icon: <FaPython className="text-indigo-400" />, glowColor: "rgba(129,140,248,0.6)" },
-  { name: "Databases", icon: <FaDatabase className="text-indigo-500" />, glowColor: "rgba(99,102,241,0.6)" },
-  { name: "MongoDB", icon: <FaMongo className="text-green-600" />, glowColor: "rgba(22,163,74,0.6)" },
+  { 
+    name: "Python", 
+    icon: <FaPython className="text-blue-500" />, 
+    glowColor: "rgba(59,130,246,0.6)" 
+  },
+  { 
+    name: "NumPy", 
+    icon: <SiNumpy className="text-blue-400" />, 
+    glowColor: "rgba(96,165,250,0.6)" 
+  },
+  { 
+    name: "Pandas", 
+    icon: <SiPandas className="text-purple-500" />, 
+    glowColor: "rgba(168,85,247,0.6)" 
+  },
+  { 
+    name: "MatPlotlib", 
+    icon: <FaChartLine className="text-green-500" />, 
+    glowColor: "rgba(34,197,94,0.6)" 
+  },
+  { 
+    name: "scikit-learn", 
+    icon: <SiScikitlearn className="text-orange-500" />, 
+    glowColor: "rgba(249,115,22,0.6)" 
+  },
+  { 
+    name: "PyTorch", 
+    icon: <SiPytorch className="text-red-500" />, 
+    glowColor: "rgba(239,68,68,0.6)" 
+  },
+  { 
+    name: "sklearn", 
+    icon: <SiScikitlearn className="text-blue-500" />, 
+    glowColor: "rgba(59,130,246,0.6)" 
+  },
+  { 
+    name: "transformers", 
+    icon: <SiHuggingface className="text-yellow-500" />, 
+    glowColor: "rgba(234,179,8,0.6)" 
+  },
+  { 
+    name: "NLTK", 
+    icon: <BsTranslate className="text-green-400" />, 
+    glowColor: "rgba(74,222,128,0.6)" 
+  },
+  { 
+    name: "LLM", 
+    icon: <GiArtificialIntelligence className="text-purple-400" />, 
+    glowColor: "rgba(192,132,252,0.6)" 
+  },
 ];
 
 const Skills = ({ isDarkMode }) => {
@@ -144,10 +155,8 @@ const Skills = ({ isDarkMode }) => {
 
   return (
     <section id="skills" className={`${isDarkMode ? 'bg-slate-900' : 'bg-white'} py-20 overflow-hidden`}>
-      <div className="container mx-auto px-6 text-center">
-        <motion.h2 initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ duration:0.5 }} className={`text-3xl md:text-4xl font-bold mb-4 ${headingColor}`}>Technical Skills</motion.h2>
-        <motion.p initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ duration:0.5, delay:0.1 }} className={`text-lg mb-12 ${subHeadingColor}`}>Development (Top) & Data Science (Bottom)</motion.p>
-
+      <div className="container mx-auto px-6 text-center ">
+        <motion.h2 initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ duration:0.5 }} className={`text-3xl md:text-4xl font-bold mb-12 ${headingColor}`}>Technical Skills</motion.h2>      
         <div className="relative group px-10 md:px-20">
           <button onClick={() => handleScroll('left')} disabled={!canLeft}
             className={`${navButtonBase} ${navButtonTheme} left-0 -translate-x-1/2 opacity-0 group-hover:opacity-100`}>
