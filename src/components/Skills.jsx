@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+// src/components/Skills.jsx
+>>>>>>> bf84ca9cf3ba90c45026a43d3bc4880abcfaf760
 import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
@@ -9,6 +13,7 @@ import {
   FaPython,
   FaChevronLeft,
   FaChevronRight,
+<<<<<<< HEAD
   FaChartLine,
   FaJava, // Added Java icon
   FaNetworkWired // Added for Networking/TCP
@@ -18,6 +23,14 @@ import { TbSql, TbRefreshDot } from "react-icons/tb"; // TbRefreshDot for concur
 import { BsTranslate } from 'react-icons/bs';
 import { GiArtificialIntelligence } from 'react-icons/gi'
 import { TbPlugConnected } from "react-icons/tb";
+=======
+  FaChartLine
+} from "react-icons/fa";
+import { SiExpress,SiNumpy, SiPandas,SiMongodb, SiScikitlearn,SiCplusplus ,SiHuggingface, SiPytorch } from "react-icons/si";
+import { TbSql } from "react-icons/tb";
+import {  BsTranslate } from 'react-icons/bs';
+import { GiArtificialIntelligence } from 'react-icons/gi'
+>>>>>>> bf84ca9cf3ba90c45026a43d3bc4880abcfaf760
 // SPLIT SKILLS: first row dev, second row data-science
 const devSkills = [
   { name: "HTML5", icon: <FaHtml5 className="text-orange-600" />, glowColor: "rgba(234,88,12,0.6)" },
@@ -26,6 +39,7 @@ const devSkills = [
   { name: "React", icon: <FaReact className="text-sky-500" />, glowColor: "rgba(14,165,233,0.6)" },
   { name: "Node.js", icon: <FaNodeJs className="text-green-500" />, glowColor: "rgba(34,197,94,0.6)" },
   { name: "Express.js", icon: <SiExpress className="text-green-600" />, glowColor: "rgba(205, 182, 35, 0.6)" },
+<<<<<<< HEAD
   { name: "MongoDB", icon: <SiMongodb className="text-green-600" />, glowColor: "rgba(22,163,74,0.6)" },
   { name: "SQL", icon: <TbSql className="text-sky-500" />, glowColor: "rgba(14,165,233,0.6)" },
   { name: "WebSockets", icon: <TbPlugConnected className="text-slate-500" />, glowColor: "rgba(100,116,139,0.6)" },
@@ -65,6 +79,77 @@ const allTechSkills = [...devSkills, ...dsRow1, ...dsRow2];
 
 const Skills = ({ isDarkMode }) => {
   const headingColor = isDarkMode ? "text-slate-100" : "text-slate-800";
+=======
+  { name: "C++", icon: <SiCplusplus className="text-blue-700" />, glowColor: "rgba(29,78,216,0.6)" },
+  { name: "SQL", icon: <TbSql className="text-sky-500" />, glowColor: "rgba(14,165,233,0.6)" },
+  { name: "MongoDB", icon: <SiMongodb className="text-green-600" />, glowColor: "rgba(22,163,74,0.6)" },
+];
+
+const dsSkills = [
+  { 
+    name: "Python", 
+    icon: <FaPython className="text-blue-500" />, 
+    glowColor: "rgba(59,130,246,0.6)" 
+  },
+  { 
+    name: "NumPy", 
+    icon: <SiNumpy className="text-blue-400" />, 
+    glowColor: "rgba(96,165,250,0.6)" 
+  },
+  { 
+    name: "Pandas", 
+    icon: <SiPandas className="text-purple-500" />, 
+    glowColor: "rgba(168,85,247,0.6)" 
+  },
+  { 
+    name: "MatPlotlib", 
+    icon: <FaChartLine className="text-green-500" />, 
+    glowColor: "rgba(34,197,94,0.6)" 
+  },
+  { 
+    name: "scikit-learn", 
+    icon: <SiScikitlearn className="text-orange-500" />, 
+    glowColor: "rgba(249,115,22,0.6)" 
+  },
+  { 
+    name: "PyTorch", 
+    icon: <SiPytorch className="text-red-500" />, 
+    glowColor: "rgba(239,68,68,0.6)" 
+  },
+  { 
+    name: "sklearn", 
+    icon: <SiScikitlearn className="text-blue-500" />, 
+    glowColor: "rgba(59,130,246,0.6)" 
+  },
+  { 
+    name: "transformers", 
+    icon: <SiHuggingface className="text-yellow-500" />, 
+    glowColor: "rgba(234,179,8,0.6)" 
+  },
+  { 
+    name: "NLTK", 
+    icon: <BsTranslate className="text-green-400" />, 
+    glowColor: "rgba(74,222,128,0.6)" 
+  },
+  { 
+    name: "LLM", 
+    icon: <GiArtificialIntelligence className="text-purple-400" />, 
+    glowColor: "rgba(192,132,252,0.6)" 
+  },
+];
+const coreSubjects = [
+  { name: "Data Structures", icon: "📊", glowColor: "rgba(59,130,246,0.6)" },
+  { name: "Algorithms", icon: "⚡", glowColor: "rgba(234,88,12,0.6)" },
+  { name: "DBMS", icon: "🗃️", glowColor: "rgba(22,163,74,0.6)" },
+  { name: "Computer Networks", icon: "🌐", glowColor: "rgba(168,85,247,0.6)" },
+  { name: "Operating Systems", icon: "💻", glowColor: "rgba(239,68,68,0.6)" },
+  { name: "OOPS", icon: "🧩", glowColor: "rgba(234,179,8,0.6)" },
+  { name: "System Design", icon: "🏗️", glowColor: "rgba(192,132,252,0.6)" },
+];
+const Skills = ({ isDarkMode }) => {
+  const headingColor = isDarkMode ? "text-slate-100" : "text-slate-800";
+  const subHeadingColor = isDarkMode ? "text-blue-400" : "text-blue-600";
+>>>>>>> bf84ca9cf3ba90c45026a43d3bc4880abcfaf760
   const navButtonBase = "absolute top-1/2 -translate-y-1/2 z-20 p-3 rounded-full shadow-xl transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed hover:scale-110 focus:outline-none focus:ring-2";
   const navButtonTheme = isDarkMode ? "bg-slate-700/90 hover:bg-slate-600 text-slate-200 focus:ring-blue-500" : "bg-white/90 hover:bg-slate-100 text-slate-700 focus:ring-blue-600";
   const techSkillsRef = useRef(null);
@@ -74,11 +159,14 @@ const Skills = ({ isDarkMode }) => {
   const [coreCanLeft, setCoreCanLeft] = useState(false);
   const [coreCanRight, setCoreCanRight] = useState(true);
 
+<<<<<<< HEAD
   // Split all technical skills into two rows dynamically
   const splitIndex = Math.ceil(allTechSkills.length / 2);
   const techRow1 = allTechSkills.slice(0, splitIndex);
   const techRow2 = allTechSkills.slice(splitIndex);
 
+=======
+>>>>>>> bf84ca9cf3ba90c45026a43d3bc4880abcfaf760
   // Separate scroll handlers
   const handleTechScroll = (dir) => {
     const c = techSkillsRef.current;
@@ -206,6 +294,7 @@ const Skills = ({ isDarkMode }) => {
             style={{ scrollBehavior:'smooth', scrollbarWidth:'none', msOverflowStyle:'none' }}
           >
             <div className="flex flex-col space-y-6 w-max mx-auto">
+<<<<<<< HEAD
               {/* Row 1: Dev Skills (Modified) */}
               <div className="flex space-x-6">
                 {renderRow(techRow1)}
@@ -213,6 +302,13 @@ const Skills = ({ isDarkMode }) => {
               {/* Row 2: Data Science Skills (Modified) */}
               <div className="flex space-x-6">
                 {renderRow(techRow2)}
+=======
+              <div className="flex space-x-6">
+                {renderRow(devSkills)}
+              </div>
+              <div className="flex space-x-6">
+                {renderRow(dsSkills)}
+>>>>>>> bf84ca9cf3ba90c45026a43d3bc4880abcfaf760
               </div>
             </div>
           </div>
@@ -228,7 +324,11 @@ const Skills = ({ isDarkMode }) => {
           </button>
         </div>
 
+<<<<<<< HEAD
         {/* Core Subjects Section (Now includes Concurrency, Java, Networking) */}
+=======
+        {/* Core Subjects Section */}
+>>>>>>> bf84ca9cf3ba90c45026a43d3bc4880abcfaf760
         <motion.h3 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -255,7 +355,33 @@ const Skills = ({ isDarkMode }) => {
             style={{ scrollBehavior:'smooth', scrollbarWidth:'none', msOverflowStyle:'none' }}
           >
             <div className="flex space-x-4 sm:space-x-6 w-max mx-auto px-2">
+<<<<<<< HEAD
               {renderRow(csSkills)}
+=======
+              {coreSubjects.map((skill, i) => (
+                <motion.div 
+                  key={i}
+                  variants={cardVariants}
+                  initial="initial"
+                  whileHover="hover"
+                  className="flex flex-col items-center justify-center 
+                            p-4 sm:p-5 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 
+                            w-[110px] h-[110px] sm:w-[130px] sm:h-[130px] md:w-[140px] md:h-[140px]
+                            flex-shrink-0 transition-all duration-300 hover:bg-white/10"
+                >
+                  <motion.div 
+                    className="text-3xl sm:text-4xl mb-2"
+                    style={{ "--glow-color": skill.glowColor }}
+                    variants={iconVariants}
+                  >
+                    {skill.icon}
+                  </motion.div>
+                  <h3 className={`text-xs sm:text-sm font-medium text-center ${isDarkMode ? 'text-slate-200' : 'text-slate-700'}`}>
+                    {skill.name}
+                  </h3>
+                </motion.div>
+              ))}
+>>>>>>> bf84ca9cf3ba90c45026a43d3bc4880abcfaf760
             </div>
           </div>
 
@@ -278,4 +404,8 @@ const Skills = ({ isDarkMode }) => {
   );
 };
 
+<<<<<<< HEAD
 export default Skills;
+=======
+export default Skills;
+>>>>>>> bf84ca9cf3ba90c45026a43d3bc4880abcfaf760

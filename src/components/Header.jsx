@@ -51,8 +51,9 @@ const Header = ({ toggleDarkMode, isDarkMode }) => {
           <a href="#projects" className={`block px-3 py-2 rounded-md text-base font-medium ${mobileLinkHoverColor}`}>Projects</a>
           <a href="#contact" className={`block px-3 py-2 rounded-md text-base font-medium ${mobileLinkHoverColor}`}>Contact</a>
            <a
-            href="https://drive.google.com/uc?id=1sYNo6tmVEeRkYaP9PEpaOw6hBNAJBpBT&export=download"
-            download="Paramjeet_Singh_Resume.pdf"
+            // href="https://drive.google.com/uc?id=1sYNo6tmVEeRkYaP9PEpaOw6hBNAJBpBT&export=download"
+             href="\cvGenerate 3.pdf"
+             download="Paramjeet_Singh_Resume.pdf"
             className={`block px-3 py-2 rounded-md text-base font-medium ${mobileLinkHoverColor}`}
           >
             Resume
