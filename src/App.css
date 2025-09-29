@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+
+body {
+  font-family: 'Inter', sans-serif;
+  /* Add other base body styles */
+  @apply bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 transition-colors duration-300;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar (optional, Webkit browsers) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: theme('colors.slate.300');
+  border-radius: 20px;
+  border: 3px solid transparent; /* Creates padding around thumb */
+}
+.dark ::-webkit-scrollbar-thumb {
+   background-color: theme('colors.slate.600');
+}
+/* Global dark mode background */
+body.dark {
+  background: #1a1a2e;
+  color: #fff;
+}
+
+/* Custom component styles for dark mode */
+.bg-gray-100 {
+  background-color: #f7fafc;
+}
+.dark\:bg-gray-900 {
+  background-color: #1a202c; /* Dark background */
+}
+
+/* Tailwind Text Colors */
+.text-gray-900 {
+  color: #1a202c;
+}
+.dark\:text-white {
+  color: #ffffff;
+}
+
+/* Header, Button, and other Components */
+.bg-blue-500 {
+  background-color: #4299e1;
+}
+.dark\:bg-blue-600 {
+  background-color: #2b6cb0;
+}
+
+/* Custom class for smooth transitions */
+transition {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+/* Projects Section */
+#projects {
+  position: relative;
+  overflow: hidden; /* Ensure no overflow from spheres */
+}
+#projects h3 {
+  margin-top: 0; /* Remove unnecessary top margin */
+  margin-bottom: 1 rem; /* Adjust spacing below the heading */
+}
+#projects > div:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+#projects .relative {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+/* Glow Animation for the Central Text */
+@keyframes glowEffect {
+  0% {
+    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);
+  }
+  50% {
+    text-shadow: 0px 0px 20px rgba(255, 255, 255, 1);
+  }
+  100% {
+    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);
+  }
+}
+
+
+button,
+a {
+  transition: all 0.3s ease-in-out;
+}
