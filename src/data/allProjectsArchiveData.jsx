@@ -1,7 +1,7 @@
 // src/data/allProjectsArchiveData.js
 
 export const allProjectsList = [
-<<<<<<< HEAD
+   <<<<<<< HEAD
     // --- Featured (Core) Projects for Archive ---
     {
       id: "mtech003",

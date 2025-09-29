@@ -2,7 +2,7 @@
 
 const featuredProjects = [
     {
-<<<<<<< HEAD
+    <<<<<<< HEAD
       title: "BLINK DB - High-Performance Key-Value Database",
       description: "Implemented a high-throughput key-value store with hashmap enabling **O(1) avg lookup time** and **LRU eviction policies**. Incorporated disk persistence, automatic recovery, and engineered thread-safe concurrency control to efficiently handle **1000+ simultaneous client connections** via an **epoll-driven TCP server**. Achieved **80K+ requests/sec** benchmark.",
       technologies: ["C++", "Multithreading", "Concurrency", "TCP/IP", "epoll", "LRU Cache", "DSA"],
