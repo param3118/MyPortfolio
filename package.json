@@ -16,11 +16,9 @@
     "react-dom": "^18.3.1",
     "react-icons": "^5.5.0",
     "react-router-dom": "^7.1.3",
-<<<<<<< HEAD
+
     "react-scripts": "^5.0.1",
-=======
-    "react-scripts": "5.0.1",
->>>>>>> bf84ca9cf3ba90c45026a43d3bc4880abcfaf760
+
     "react-tsparticles": "^2.12.2",
     "three": "^0.171.0",
     "three-stdlib": "^2.35.2",
