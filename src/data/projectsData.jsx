@@ -47,7 +47,7 @@ const featuredProjects = [
      {
     title: "To-Do List Application (MERN)",
     technologies: ["JavaScript", "React", "Node.js", "Express", "MongoDB"],
-    githubLink: "#YOUR_TODO_LIST_GITHUB_LINK_HERE", // <<< IMPORTANT: Replace with your actual GitHub link
+    githubLink: "https://github.com/param3118/TO-DO-LIST", // <<< IMPORTANT: Replace with your actual GitHub link
     description: "A full-stack MERN To-Do List application featuring task management (CRUD), user authentication, and a responsive user interface.",
   },
     {
@@ -65,7 +65,7 @@ const featuredProjects = [
       description: "Developed a fake news classifier on a COVID-19 social media dataset using **TF-IDF**. Compared Logistic Regression, SVM, KNN, and Neural Net models, achieving **91.4% accuracy** with cross-validation.",
       technologies: ["Python", "scikit-learn", "TF-IDF", "Logistic Regression", "SVM", "Neural Networks"],
       // *** ACTION REQUIRED: Replace [FAKE-NEWS-REPO] with your actual repo name ***
-      github: "https://github.com/param3118/FAKE-NEWS-DETECTION-REPO",
+      github: "https://github.com/param3118/COVID-FAKE-NEWS-DETECTION",
       // link: "#",
       features: ["91.4% Accuracy", "COVID-19 Dataset", "TF-IDF Vectorization", "Model Optimization"],
     },

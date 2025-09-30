@@ -50,7 +50,7 @@ const dsRow2 = [
 
 const csSkills = [
   { name: "C++", icon: <SiCplusplus className="text-blue-700" />, glowColor: "rgba(29,78,216,0.6)" },
-  { name: "Java", icon: <FaJava className="text-red-500" />, glowColor: "rgba(239,68,68,0.6)" }, // Added Java
+  // { name: "Java", icon: <FaJava className="text-red-500" />, glowColor: "rgba(239,68,68,0.6)" }, // Added Java
   { name: "Concurrency", icon: <TbRefreshDot className="text-teal-400" />, glowColor: "rgba(74,222,128,0.6)" }, // New
   { name: "Networking", icon: <FaNetworkWired className="text-blue-400" />, glowColor: "rgba(96,165,250,0.6)" }, // New
   { name: "Operating Systems", icon: "💻", glowColor: "rgba(239,68,68,0.6)" },
