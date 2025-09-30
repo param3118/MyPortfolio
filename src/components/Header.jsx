@@ -7,6 +7,13 @@ const Header = ({ toggleDarkMode, isDarkMode }) => {
   const linkHoverColor = isDarkMode ? "hover:text-blue-400" : "hover:text-blue-600";
   const mobileLinkHoverColor = isDarkMode ? "hover:bg-slate-700" : "hover:bg-slate-100";
 
+  // --- UPDATED RESUME LINK ---
+  // We use the 'uc?export=download&id=' format to turn the view link into a direct
+  // file stream/download link. Combined with target="_blank", this ensures the resume
+  // opens immediately in a new tab, where the user can view or save it.
+  const resumeId = "1Hplg1wVcflvs7zdJ-18mZldAyubaXYIE";
+  const resumeUrl = `https://drive.google.com/uc?export=download&id=${resumeId}`;
+
   return (
     <header className={`sticky top-0 z-50 shadow-md backdrop-blur-md ${isDarkMode ? 'bg-slate-900/70 border-b border-slate-700' : 'bg-white/70 border-b border-slate-200'} text-slate-900 dark:text-slate-200 transition-colors duration-300`}>
       <div className="container mx-auto flex justify-between items-center px-6 py-3">
@@ -16,9 +23,11 @@ const Header = ({ toggleDarkMode, isDarkMode }) => {
           <a href="#skills" className={`${linkHoverColor} transition-colors`}>Skills</a>
           <a href="#projects" className={`${linkHoverColor} transition-colors`}>Projects</a>
           <a href="#contact" className={`${linkHoverColor} transition-colors`}>Contact</a>
+          {/* DESKTOP LINK: Opens in new tab, forces file retrieval */}
           <a
-            href="https://drive.google.com/uc?id=1sYNo6tmVEeRkYaP9PEpaOw6hBNAJBpBT&export=download"
-            download="Paramjeet_Singh_Resume.pdf"
+            href={resumeUrl}
+            target="_blank" 
+            rel="noopener noreferrer"
             className={`ml-2 px-3 py-1 border rounded-md transition-colors ${isDarkMode ? 'border-slate-600 hover:bg-slate-700 hover:border-slate-500' : 'border-slate-300 hover:bg-slate-100 hover:border-slate-400'}`}
           >
             Resume
@@ -50,10 +59,11 @@ const Header = ({ toggleDarkMode, isDarkMode }) => {
           <a href="#skills" className={`block px-3 py-2 rounded-md text-base font-medium ${mobileLinkHoverColor}`}>Skills</a>
           <a href="#projects" className={`block px-3 py-2 rounded-md text-base font-medium ${mobileLinkHoverColor}`}>Projects</a>
           <a href="#contact" className={`block px-3 py-2 rounded-md text-base font-medium ${mobileLinkHoverColor}`}>Contact</a>
+           {/* MOBILE LINK: Opens in new tab, forces file retrieval */}
            <a
-            // href="https://drive.google.com/uc?id=1sYNo6tmVEeRkYaP9PEpaOw6hBNAJBpBT&export=download"
-             href="\cvGenerate 3.pdf"
-             download="Paramjeet_Singh_Resume.pdf"
+            href={resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className={`block px-3 py-2 rounded-md text-base font-medium ${mobileLinkHoverColor}`}
           >
             Resume
