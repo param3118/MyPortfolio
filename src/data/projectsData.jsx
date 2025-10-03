@@ -3,8 +3,8 @@
 const featuredProjects = [
     {
       title: "BLINK DB - High-Performance Key-Value Database",
-      description: "Implemented a high-throughput key-value store with hashmap enabling **O(1) avg lookup time** and **LRU eviction policies**. Incorporated disk persistence, automatic recovery, and engineered thread-safe concurrency control to efficiently handle **1000+ simultaneous client connections** via an **epoll-driven TCP server**. Achieved **80K+ requests/sec** benchmark.",
-      technologies: ["C++", "Multithreading", "Concurrency", "TCP/IP", "epoll", "LRU Cache", "DSA"],
+      description: "Implemented a high-throughput key-value store with hashmap enabling **O(1) avg lookup time** and **LRU eviction policies**. It has disk persistence, automatic recovery, and engineered thread-safe concurrency control to efficiently handle **1000+ simultaneous client connections**. " ,
+      technologies: ["C++", "Multithreading", "Concurrency", "TCP/IP", "epoll", "LRU Cache", "DSA"] ,
       // *** ACTION REQUIRED: Replace [BLINK-DB-REPO] with your actual repo name ***
       github: "https://github.com/param3118/BLINK-DB---High-Performance-Key-Value-Database", 
       // link: "#", // Add live demo link if hosted
